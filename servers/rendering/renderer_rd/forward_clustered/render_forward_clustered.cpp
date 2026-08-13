@@ -1099,6 +1099,11 @@ void RenderForwardClustered::_fill_render_list(RenderListType p_render_list, con
 		}
 
 		while (surf) {
+			if (surf->surface_index < (uint32_t)inst->data->surface_visibility.size() && inst->data->surface_visibility[surf->surface_index] == 0) {
+				surf = surf->next;
+				continue;
+			}
+
 			surf->sort.uses_forward_gi = 0;
 			surf->sort.uses_lightmap = 0;
 

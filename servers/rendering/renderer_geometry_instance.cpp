@@ -58,6 +58,10 @@ void RenderGeometryInstanceBase::set_surface_materials(const Vector<RID> &p_mate
 	data->dirty_dependencies = true;
 }
 
+void RenderGeometryInstanceBase::set_surface_visibility(const PackedByteArray &p_visibility) {
+	data->surface_visibility = p_visibility;
+}
+
 void RenderGeometryInstanceBase::set_mesh_instance(RID p_mesh_instance) {
 	mesh_instance = p_mesh_instance;
 

@@ -985,6 +985,18 @@ void RendererSceneCull::instance_geometry_set_transparency(RID p_instance, float
 	}
 }
 
+void RendererSceneCull::instance_geometry_set_surface_visibility_mask(RID p_instance, const PackedByteArray &p_visibility_mask) {
+	Instance *instance = instance_owner.get_or_null(p_instance);
+	ERR_FAIL_NULL(instance);
+	ERR_FAIL_COND(instance->base_type != RSE::INSTANCE_MESH);
+	ERR_FAIL_NULL(instance->base_data);
+
+	InstanceGeometryData *geom = static_cast<InstanceGeometryData *>(instance->base_data);
+	ERR_FAIL_NULL(geom->geometry_instance);
+
+	geom->geometry_instance->set_surface_visibility(p_visibility_mask);
+}
+
 void RendererSceneCull::instance_set_transform(RID p_instance, const Transform3D &p_transform) {
 	Instance *instance = instance_owner.get_or_null(p_instance);
 	ERR_FAIL_NULL(instance);

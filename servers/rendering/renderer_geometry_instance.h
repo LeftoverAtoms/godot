@@ -34,6 +34,7 @@
 #include "core/math/rect2.h"
 #include "core/math/transform_3d.h"
 #include "core/templates/rid.h"
+#include "core/variant/variant.h"
 #include "servers/rendering/storage/utilities.h"
 
 // API definition for our RenderGeometryInstance class so we can expose this through GDExtension in the near future
@@ -47,6 +48,7 @@ public:
 	virtual void set_material_override(RID p_override) = 0;
 	virtual void set_material_overlay(RID p_overlay) = 0;
 	virtual void set_surface_materials(const Vector<RID> &p_materials) = 0;
+	virtual void set_surface_visibility(const PackedByteArray &p_visibility) = 0;
 	virtual void set_mesh_instance(RID p_mesh_instance) = 0;
 	virtual void set_transform(const Transform3D &p_transform, const AABB &p_aabb, const AABB &p_transformed_aabb) = 0;
 	virtual void set_pivot_data(float p_sorting_offset, bool p_use_aabb_center) = 0;
@@ -118,6 +120,7 @@ public:
 
 		RID skeleton;
 		Vector<RID> surface_materials;
+		PackedByteArray surface_visibility;
 		RID material_override;
 		RID material_overlay;
 		AABB aabb;
@@ -136,6 +139,7 @@ public:
 	virtual void set_material_override(RID p_override) override;
 	virtual void set_material_overlay(RID p_overlay) override;
 	virtual void set_surface_materials(const Vector<RID> &p_materials) override;
+	virtual void set_surface_visibility(const PackedByteArray &p_visibility) override;
 	virtual void set_mesh_instance(RID p_mesh_instance) override;
 	virtual void set_transform(const Transform3D &p_transform, const AABB &p_aabb, const AABB &p_transformed_aabb) override;
 	virtual void set_pivot_data(float p_sorting_offset, bool p_use_aabb_center) override;
